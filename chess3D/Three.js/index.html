@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101714" />
+    <meta name="description" content="Play beautiful 3D chess against a computer in your browser." />
+    <title>Atelier Chess — Play in 3D</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="wordmark" href="/" aria-label="Atelier Chess home">
+          <span class="brand-mark" aria-hidden="true">♞</span>
+          <span>ATELIER <span class="wordmark-light">CHESS</span></span>
+        </a>
+        <div id="account-area" class="account-area" hidden>
+          <span id="account-name" class="account-name"></span>
+          <button id="sign-out" class="text-button" type="button">Sign out</button>
+        </div>
+      </header>
+
+      <main>
+        <section id="login-view" class="login-view" hidden>
+          <div class="login-art" aria-hidden="true">
+            <div class="art-board"></div>
+            <span class="art-piece art-piece-one">♜</span>
+            <span class="art-piece art-piece-two">♞</span>
+            <span class="art-piece art-piece-three">♝</span>
+          </div>
+          <div class="login-copy">
+            <p class="eyebrow">A meeting of minds</p>
+            <h1>Chess, with a<br /><em>new perspective.</em></h1>
+            <p class="intro">Take your seat at a sculpted 3D board and challenge a computer opponent, right in your browser.</p>
+            <button id="sign-in" class="google-button" type="button" disabled>
+              <span class="google-g" aria-hidden="true">G</span>
+              Continue with Google
+            </button>
+            <p class="quiet-note">Sign in with Google. Your games are played locally in this browser.</p>
+          </div>
+        </section>
+
+        <section id="lobby-view" class="lobby-view" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Your next match</p>
+              <h1>Choose your challenge.</h1>
+            </div>
+            <p class="section-note">A thoughtful opponent is always ready for a game.</p>
+          </div>
+          <div class="lobby-cards">
+            <article class="lobby-card create-card">
+              <span class="card-index">SINGLE PLAYER</span>
+              <div class="card-symbol" aria-hidden="true">♔</div>
+              <h2>Play the computer</h2>
+              <p>You play white. The computer takes black. Choose a strength and start whenever you’re ready.</p>
+              <div class="solo-controls">
+                <label for="difficulty">COMPUTER STRENGTH</label>
+                <select id="difficulty">
+                  <option value="1">Easy</option>
+                  <option value="2" selected>Medium</option>
+                  <option value="3">Hard</option>
+                </select>
+                <button id="start-game" class="primary-button" type="button">Start a new game <span>↗</span></button>
+              </div>
+            </article>
+          </div>
+          <p id="lobby-message" class="message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section id="game-view" class="game-view" hidden>
+          <div class="game-heading">
+            <div>
+              <button id="back-to-lobby" class="back-button" type="button">← Back to lobby</button>
+              <h1 id="game-title">The match</h1>
+            </div>
+            <button id="new-game" class="primary-button" type="button">New game <span>↻</span></button>
+          </div>
+          <div class="game-layout">
+            <div class="board-frame">
+              <div id="chess-board" class="chess-board" aria-label="Interactive 3D chess board"></div>
+              <div class="board-caption">
+                <span id="board-hint">Drag to orbit · scroll to zoom</span>
+                <span class="live-indicator"><i></i> YOUR BOARD</span>
+              </div>
+            </div>
+            <aside class="game-sidebar">
+              <div class="players-card">
+                <div id="opponent-player" class="player-row">
+                  <span class="player-avatar">♟</span>
+                  <div><span id="black-side" class="player-side">BLACK · COMPUTER</span><strong id="black-name">Chess computer</strong></div>
+                  <span id="black-turn" class="turn-indicator"></span>
+                </div>
+                <div class="player-divider"></div>
+                <div id="you-player" class="player-row">
+                  <span class="player-avatar light-avatar">♙</span>
+                  <div><span id="white-side" class="player-side">WHITE · YOU</span><strong id="white-name">You</strong></div>
+                  <span id="white-turn" class="turn-indicator"></span>
+                </div>
+              </div>
+              <div class="status-card">
+                <span class="card-index">MATCH STATUS</span>
+                <h2 id="game-status">Your turn</h2>
+                <p id="game-detail">Choose a piece to see its legal moves.</p>
+              </div>
+              <div class="moves-card">
+                <div class="moves-heading"><span class="card-index">MOVES</span><span id="move-count">00</span></div>
+                <ol id="move-list" class="move-list"></ol>
+              </div>
+              <p class="board-help">Click a piece to see its legal moves. Drag the board to find your angle.</p>
+            </aside>
+          </div>
+          <p id="game-message" class="message" role="status" aria-live="polite"></p>
+        </section>
+      </main>
+      <footer class="footer"><span>ATELIER CHESS</span><span>TAKE YOUR TIME. MAKE YOUR MOVE.</span></footer>
+    </div>
+    <script src="https://accounts.google.com/gsi/client" defer></script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
